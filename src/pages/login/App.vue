@@ -1,26 +1,79 @@
 <template>
     <div id="app">
-        <h1 class="cla">login</h1>
-        <a class="doc" href='system.html'>system1122343456</a>
+        <Form class="login" :model="loginInfo" :label-width="80">
+            <FormItem label="用户名">
+                <Input v-model="loginInfo.userName" placeholder='用户名' />
+            </FormItem>
+            <FormItem label="密码">
+                <Input v-model="loginInfo.password" type='password' placeholder='密码'/>
+            </FormItem>
+            <FormItem>
+                <Button type='primary' @click='login' :long='true'>登录</Button>
+            </FormItem>
+        </Form>
     </div>
 </template>
 
 <script>
+import md5 from 'md5'
+
 export default {
     name: 'App',
     data(){
         return {
-          
+            loginInfo: {
+                userName: '11123456789',
+                password: '12345678@g',
+                validateCode: ''
+            }
+        }
+    },
+    methods: {
+        login(){
+            let parms = this.loginInfo 
+            let notNoll = {
+                'userName': '用户名',
+                'password': '口令'
+            }
+            parms.password = md5(parms.password)
+            this.http.post('/sys/login',parms).then(res => {
+                if (res.success) {
+                    let data = res.data && res.data[0] || {}
+                    sessionStorage.setItem('userInfo', data)
+                    this.getToken()
+                } else {
+                    this.getImg()
+                    this.data.set('validateCode', '')
+                }
+            }).catch(error => {
+                throw error
+            })
+        },
+        //获取token
+        getToken() {
+            let loginInfo = this.loginInfo
+            delete loginInfo.validateCode
+            this.http.post('/sys/token', loginInfo).then(res => {
+                let token = res.headers.author
+                if(token){
+                    sessionStorage.setItem('token', token)
+                    window.location.href = 'system.html'
+                }
+            }).catch(error => {
+                throw error
+            })
         }
     }
 }
 </script>
 
 <style lang="scss">
-    .cla{
-        text-align: center;
-        box-sizing: border-box;
-        display: flex;
-        color: green;
+    .login{
+        width: 400px;
+        height: 200px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform:translate(-50%,-50%);
     }
 </style>
