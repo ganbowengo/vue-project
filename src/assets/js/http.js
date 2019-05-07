@@ -4,10 +4,11 @@ const BASE_URL = '/frontend'
 axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     config.url = BASE_URL + config.url
-    console.log(config)
     let token = sessionStorage.getItem('token')
     if (token) {
-        config.headers.token = token
+        config.headers.author = token
+    }else{
+        window.location.href = 'login.html'
     }
     return config;
 }, function (error) {

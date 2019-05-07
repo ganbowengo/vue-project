@@ -5,6 +5,7 @@ import http from '@/assets/js/http'
 
 import { Button, Input, Form, FormItem } from 'iview'
 import 'iview/dist/styles/iview.css';
+require('&/mock/mock-config.js')
 
 Vue.prototype.http = http
 Vue.component('Button', Button)
