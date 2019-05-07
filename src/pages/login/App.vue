@@ -39,15 +39,19 @@ export default {
             this.http.post('/sys/login',parms).then(res => {
                 if (res.success) {
                     let data = res.data && res.data[0] || {}
-                    sessionStorage.setItem('userInfo', data)
+                    this.saveUserInfo(data)
                     this.getToken()
                 } else {
-                    this.getImg()
                     this.data.set('validateCode', '')
                 }
             }).catch(error => {
                 throw error
             })
+        },
+        saveUserInfo(data = {}){
+            Object.keys(data).forEach(key => {
+                sessionStorage.setItem(key, data[key])
+            });
         },
         //获取token
         getToken() {
