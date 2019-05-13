@@ -4,7 +4,7 @@ import router from './router/index.js'
 import http from '@/assets/js/http'
 import store from './vuex'
 
-import { Button, Table, Input, Select, Page, Icon, Layout, Menu, MenuItem, Sider, Breadcrumb, BreadcrumbItem, Submenu } from 'iview'
+import { Button, Table, Input, Select, Page, Icon, Layout, Menu, MenuItem, Sider, Breadcrumb, BreadcrumbItem, Submenu, Modal } from 'iview'
 import 'iview/dist/styles/iview.css';
 import '@/assets/styles/index.scss';
 
@@ -23,6 +23,7 @@ Vue.component('Sider', Sider)
 Vue.component('Breadcrumb', Breadcrumb)
 Vue.component('Submenu', Submenu)
 Vue.component('BreadcrumbItem', BreadcrumbItem)
+Vue.component('Modal', Modal)
 
 new Vue({
     el:'#app',

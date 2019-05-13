@@ -6,11 +6,11 @@ Vue.use(VueRouter)
 import Home from '../components/common/HeaderMenu.vue'
 
 const routes = [{
-    path: '/home',
+    path: '/userRegistration',
     component: Home
 }, {
     path: '/',
-    redirect: '/home'
+    redirect: '/userRegistration'
 }]
 
 export default new VueRouter({
