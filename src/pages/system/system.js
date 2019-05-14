@@ -1,3 +1,10 @@
+/**
+ * 
+ * author ganbowen
+ * description system 页面的主文件
+ * created 2019/05/08 14:33:57
+ * 
+ */
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
