@@ -64,7 +64,8 @@ cd vue-project
 
 7.配置webpack.config.dev.js
     配置devServer
-    配置
+    配置mock webpack-api-mocker
+    配置全局变量 webpack.DefinePlugin 设置mock的开关
 
 8.配置webpack.config.pro.js
     配置CleanWebpackPlugin 清空每次打包完的dist中的旧文件

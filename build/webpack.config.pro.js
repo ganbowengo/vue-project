@@ -1,4 +1,12 @@
+/**
+ * 
+ * author ganbowen
+ * description 生产环境
+ * created 2019/05/03 14:28:18
+ * 
+ */
 'use strict'
+
 const path = require('path')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
@@ -8,6 +16,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = merge(baseConfig, {
     mode: 'production',
+    devtool: 'hidden-source-map',
     module: {
         rules: [{
             test: /\.scss$/,

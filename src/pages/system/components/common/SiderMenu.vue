@@ -40,7 +40,7 @@
             return {
                 menuList: [],
                 activeName: '',
-                openNames: ['fxgl']
+                openNames: []
             }
         },
         computed: mapGetters('menu',['menuName']),

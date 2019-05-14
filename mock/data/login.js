@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     "success": true,
     "errorCode": "0",
     "message": null,

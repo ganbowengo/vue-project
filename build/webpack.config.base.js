@@ -1,3 +1,10 @@
+/**
+ * 
+ * author ganbowen
+ * description 基础配置
+ * created 2019/05/03 14:30:18
+ * 
+ */
 'use strict'
 
 const fs = require('fs')
