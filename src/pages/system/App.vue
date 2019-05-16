@@ -6,11 +6,11 @@
                 <Sider hide-trigger :width='240' :style="{background: '#fff'}">
                     <sliderMenu></sliderMenu>
                 </Sider>
-                <Layout :style="{padding: '0 24px 24px'}">
-                    <Breadcrumb :style="{margin: '24px 0'}">
+                <Layout>
+                    <Breadcrumb class='breadcrumb'>
                         <BreadcrumbItem v-for='item,index in menuName' :key='index'>{{item}}</BreadcrumbItem>
                     </Breadcrumb>
-                    <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+                    <Content class='content'>
                        <router-view></router-view>
                     </Content>
                 </Layout>
@@ -38,8 +38,18 @@
 </script>
 
 <style lang="scss" scoped>
-    .layout,.ivu-layout,.ivu-menu{
+    .layout,.ivu-layout,.ivu-menu {
         height: 100%;
         overflow: auto;
+    }
+    .breadcrumb {
+        border-bottom: 1px solid #c4cfea;
+        padding: 15px 10px;
+        background: #fff;
+    }
+    .content {
+        padding: 10px;
+        height: 100%;
+        background: #fafcff;
     }
 </style>

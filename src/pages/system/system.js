@@ -11,7 +11,7 @@ import router from './router/index.js'
 import http from '@/assets/js/http'
 import store from './vuex'
 
-import { Button, Table, Input, Select, Page, Icon, Layout, Menu, MenuItem, Sider, Breadcrumb, BreadcrumbItem, Submenu, Modal } from 'iview'
+import { Button, Table, Input, Select, Page, Icon, Layout, Menu, MenuItem, Sider, Breadcrumb, BreadcrumbItem, Submenu, Modal, DatePicker } from 'iview'
 import 'iview/dist/styles/iview.css';
 import '@/assets/styles/index.scss';
 
@@ -31,6 +31,7 @@ Vue.component('Breadcrumb', Breadcrumb)
 Vue.component('Submenu', Submenu)
 Vue.component('BreadcrumbItem', BreadcrumbItem)
 Vue.component('Modal', Modal)
+Vue.component('DatePicker', DatePicker)
 
 new Vue({
     el:'#app',
