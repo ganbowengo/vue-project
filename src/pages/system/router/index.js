@@ -3,11 +3,11 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Home from '../components/common/HeaderMenu.vue'
+import systemCodeInvoiceType from '../components/systemManage/codeMange/InvoiceTypeManage'
 
 const routes = [{
-    path: '/userRegistration',
-    component: Home
+    path: '/systemCodeInvoiceType',
+    component: systemCodeInvoiceType
 }, {
     path: '/',
     redirect: '/userRegistration'
