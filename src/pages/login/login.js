@@ -10,14 +10,16 @@ import App from './App.vue'
 import '@/assets/styles/index.scss';
 import http from '@/assets/js/http'
 
-import { Button, Input, Form, FormItem } from 'iview'
+import { Button, Input, Form, FormItem, Message } from 'iview'
 import 'iview/dist/styles/iview.css';
 
-Vue.prototype.http = http
+Vue.prototype.$Message = Message
 Vue.component('Button', Button)
 Vue.component('Input', Input)
 Vue.component('Form', Form)
 Vue.component('FormItem', FormItem)
+
+Vue.prototype.http = http
 new Vue({
     el:'#app',
     render:(h)=>h(App)

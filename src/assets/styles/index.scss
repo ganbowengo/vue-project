@@ -4,4 +4,20 @@ body,
     height: 100%;
 }
 
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
 @import './ivu-style-reset.scss'
