@@ -23,7 +23,7 @@ export default {
         return {
             loginInfo: {
                 userName: '11123456789',
-                password: '12345678@g',
+                password: '12345678W@',
                 validateCode: ''
             }
         }
@@ -31,18 +31,12 @@ export default {
     methods: {
         login(){
             let parms = this.loginInfo 
-            let notNoll = {
-                'userName': '用户名',
-                'password': '口令'
-            }
             parms.password = md5(parms.password)
             this.http.post('/sys/login',parms).then(res => {
                 if (res.success) {
                     let data = res.data && res.data[0] || {}
                     this.saveUserInfo(data)
                     this.getToken()
-                } else {
-                    this.data.set('validateCode', '')
                 }
             }).catch(error => {
                 throw error
@@ -51,7 +45,7 @@ export default {
         saveUserInfo(data = {}){
             Object.keys(data).forEach(key => {
                 sessionStorage.setItem(key, data[key])
-            });
+            })
         },
         //获取token
         getToken() {

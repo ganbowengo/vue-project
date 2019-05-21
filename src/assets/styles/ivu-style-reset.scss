@@ -6,6 +6,13 @@
     vertical-align: middle;
     border: 1px solid #dcdee2;
     border-radius: 4px;
+    &:focus{
+        border-color: #57a3f3;
+        box-shadow: 0 0 0 2px rgba(45,140,240,.2);
+    }
+    &:hover{
+        border-color: #57a3f3;
+    }
     .ivu-input{
         border: 0;
         outline: none;
@@ -18,39 +25,40 @@
             top: 0;
         }
     }
-    .box-select{
-        display: inline-table;
+    .ivu-select {
+        display: table-cell;
+        .ivu-select-selection {
+            border: 0;
+            outline: 0;
+            box-shadow: 0 !important;
+            border-bottom-left-radius: 0!important;
+            border-top-left-radius: 0!important;
+        }
+        &-visible {
+            .ivu-select-selection{
+                box-shadow: none !important;
+            }
+        }
+    }
+}
+
+.box-select{
+    display: inline-table;
+    vertical-align: middle;
+    label {
+        display: table-cell;
+        word-break: keep-all;
+        white-space: nowrap;
         vertical-align: middle;
-        label {
-            display: table-cell;
-            word-break: keep-all;
-            white-space: nowrap;
-            vertical-align: middle;
-            padding: 4px 7px;
-            font-size: inherit;
-            font-weight: 400;
-            line-height: 1;
-            color: #515a6e;
-            text-align: center;
-            background-color: #f8f8f9;
-            border-right: 1px solid #dcdee2;
-            border-bottom-left-radius: 4px;
-            border-top-left-radius: 4px;
-        }
-        .ivu-select {
-            display: table-cell;
-            .ivu-select-selection {
-                border: 0;
-                outline: 0;
-                box-shadow: 0 !important;
-                border-bottom-left-radius: 0!important;
-                border-top-left-radius: 0!important;
-            }
-            &-visible {
-                .ivu-select-selection{
-                    box-shadow: 0 !important;
-                }
-            }
-        }
+        padding: 4px 7px;
+        font-size: inherit;
+        font-weight: 400;
+        line-height: 1;
+        color: #515a6e;
+        text-align: center;
+        background-color: #f8f8f9;
+        border-right: 1px solid #dcdee2;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
     }
 }
