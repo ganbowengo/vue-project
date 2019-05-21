@@ -10,7 +10,7 @@ const routes = [{
     component: systemCodeInvoiceType
 }, {
     path: '/',
-    redirect: '/userRegistration'
+    redirect: '/systemCodeInvoiceType'
 }]
 
 export default new VueRouter({
