@@ -1,6 +1,10 @@
 <template>
     <div>
         <SearchCondition :condition='condition' @queryData='getQueryData'></SearchCondition>
+        <div class="mb10">
+            <Button type='primary' @click='add'>新增</Button>
+            <Button type='primary' @click='del'>删除</Button>
+        </div>
         <Table border :columns="table.columns" :data="table.tableData"></Table>
         <div class="fr mt10 mb10">
             <Page 
@@ -11,15 +15,20 @@
                 @on-change='change'
                 @on-page-size-change='sizeChange' show-total show-sizer />
         </div>
+        <InvoiceTypeModal ref='InvoiceTypeModal'></InvoiceTypeModal>
     </div>
 </template>
 
 <script>
 
 import SearchCondition from '../../serviceCommon/SearchCondition'
+import InvoiceTypeModal from './commonModal/InvoiceTypeModal'
+import pageMixin from '@system/mixins/systemPageMixin'
 import {mapState} from 'vuex'
 export default {
-    data () {
+    components: { SearchCondition, InvoiceTypeModal },
+    mixins: [pageMixin],
+    data() {
         return {
             searchInfo: {},
             condition: [
@@ -112,6 +121,11 @@ export default {
                                     props: {
                                         type: 'primary',
                                         size: 'small'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.update(params)
+                                        }
                                     }
                                 }, '修改')
                             ]);
@@ -131,23 +145,19 @@ export default {
     computed: {
         ...mapState('dictionary', ['fplxdm','qybz'])
     },
-    components: { SearchCondition },
-    created () {
+    created() {
         this.condition[3].options = this.fplxdm
         this.condition[4].options = this.qybz
     },
     methods: {
-        getQueryData (query) {
-            this.searchInfo = query
-        },
-        query (query) {
+        query(query) {
             query ? this.getQueryData(query) : ''
             query = query || this.searchInfo
             query.pageSize = this.table.page.size
             query.currentPage = this.table.page.current
             this.http.post('/sys/fpzldm/searchFpzldm',{
                 options: {
-                    trans:[]
+                    trans:['fplxdm','qybz']
                 },
                 params: query
             }).then(res => {
@@ -157,13 +167,14 @@ export default {
                 throw error
             })
         },
-        change (current) {
-            this.table.page.current = current
-            this.query()
+        add() {
+            this.$refs.InvoiceTypeModal.open()
         },
-        sizeChange (size) {
-            this.table.page.size = size
-            this.query()
+        del() {
+            
+        },
+        update(params) {
+            this.$refs.InvoiceTypeModal.open(params.row)
         }
     }
 }

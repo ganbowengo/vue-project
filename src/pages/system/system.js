@@ -11,7 +11,27 @@ import router from './router/index.js'
 import http from '@/assets/js/http'
 import store from './vuex'
 
-import { Button, Table, Input, Select, Page, Icon, Layout, Menu, MenuItem, Sider, Breadcrumb, BreadcrumbItem, Submenu, Modal, DatePicker, Option, Message } from 'iview'
+import {
+    Button,
+    Table,
+    Input,
+    Select,
+    Page,
+    Icon,
+    Layout,
+    Menu,
+    MenuItem,
+    Sider,
+    Breadcrumb,
+    BreadcrumbItem,
+    Submenu,
+    Modal,
+    DatePicker,
+    Option,
+    Message,
+    Form,
+    FormItem,
+} from 'iview'
 import 'iview/dist/styles/iview.css';
 import '@/assets/styles/index.scss';
 
@@ -33,12 +53,14 @@ Vue.component('BreadcrumbItem', BreadcrumbItem)
 Vue.component('Modal', Modal)
 Vue.component('DatePicker', DatePicker)
 Vue.component('Option', Option)
+Vue.component('Form', Form)
+Vue.component('FormItem', FormItem)
 
 Vue.prototype.http = http
 
 new Vue({
-    el:'#app',
+    el: '#app',
     router,
     store,
-    render:(h)=>h(App)
+    render: (h) => h(App)
 })
