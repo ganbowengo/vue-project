@@ -10,6 +10,7 @@ import App from './App.vue'
 import router from './router/index.js'
 import http from '@/assets/js/http'
 import store from './vuex'
+import initCommonUi from '@system/common-ui'
 
 import {
     Button,
@@ -36,7 +37,6 @@ import 'iview/dist/styles/iview.css';
 import '@/assets/styles/index.scss';
 
 Vue.prototype.$Message = Message
-
 Vue.component('Button', Button)
 Vue.component('Table', Table)
 Vue.component('Input', Input)
@@ -56,6 +56,7 @@ Vue.component('Option', Option)
 Vue.component('Form', Form)
 Vue.component('FormItem', FormItem)
 
+
 Vue.prototype.http = http
 
 new Vue({
@@ -64,3 +65,4 @@ new Vue({
     store,
     render: (h) => h(App)
 })
+initCommonUi()

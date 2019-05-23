@@ -4,6 +4,7 @@
         :title="modalData.title"
         @on-ok="ok"
         @on-cancel="cancel">
+        <LabelInput></LabelInput>
         <Form :model="formItem" :label-width="80">
             <FormItem label="Input">
                 <Input v-model="formItem.input" placeholder="Enter something..."></Input>
