@@ -5,6 +5,7 @@
  * created 2019/05/24 10:57:44
  * 
  */
+import {changeCodeToName, changeNameToCode} from './trans'
 
 export default {
     /**
@@ -29,5 +30,7 @@ export default {
             accept[key] = ''
         }
         return accept
-    }
+    },
+    changeCodeToName,
+    changeNameToCode
 } 

@@ -1,9 +1,7 @@
 <template>
-    <div class='label-box'>
-        <span class='label-text'>{{label}}</span>
+    <Label :label='label' :width='width'>
         <Input 
             :value="inputValue" 
-            class="label-input"
             :type="type" 
             :placeholder="placeholder" 
             :disabled="disabled"
@@ -12,15 +10,13 @@
             :clearable="clearable"
             :readonly="readonly"
             :size="size"
-            :style='styles'
             @on-focus="handleFocus" 
             @on-blur="handleBlur" 
             @on-change="handleChange" 
             @input="handleInput" 
             @on-enter="handleEnter"
-            >
-        </Input>
-    </div>
+            />
+    </Label>
 </template>
 
 <script>
@@ -31,17 +27,12 @@ export default {
             type: [String, Number],
             default: ''
         },
+        name: {
+            type: String
+        },
         type: {
             type: String,
             default: 'text'
-        },
-        name: {
-            type: String,
-            default: ''
-        },
-        label: {
-            type: [String, Number],
-            default: ''
         },
         placeholder: {
             type: String,
@@ -69,18 +60,12 @@ export default {
             type: Boolean,
             default: false
         },
-        name: {
-            type: String
-        },
         width: {
             type: [String, Number]
-        }
-    },
-    computed: {
-        styles() {
-            let style = {}
-            if (this.width) style = {width: this.width + 'px'}
-            return style
+        },
+        label: {
+            type: [String, Number],
+            default: ''
         }
     },
     data () {

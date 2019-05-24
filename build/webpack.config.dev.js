@@ -65,6 +65,12 @@ module.exports = merge(baseConfig, {
             use: [
                 'vue-style-loader',
                 "css-loader",
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: [require('autoprefixer')]
+                    }
+                },
                 "sass-loader"
             ]
         }]

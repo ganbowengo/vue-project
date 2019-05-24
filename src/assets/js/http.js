@@ -19,6 +19,7 @@ const NULL_TOKEN_URL = ['/sys/token','/sys/login']
 const jumpLogin = () => { 
     window.location.href = 'login.html' 
 }
+
 axios.interceptors.request.use(config => {
     // 在发送请求之前做些什么
     let token = sessionStorage.getItem('token')
@@ -45,17 +46,18 @@ axios.interceptors.response.use(response => {
         }
         return response
     } else {
-        if (!response.data.success) {
-            VUE_UI_OBJ.$Message.error(response.data.errorMsg)
+        let result = response.data
+        if (!result.success) {
+            VUE_UI_OBJ.$Message.error(result.errorMsg)
         } else {
-            if (response.config.options) {
-                let result = response.data
+            let optionsConfig = response.config.options
+            if (optionsConfig) {
                 if (result && result.data) {
-                    response.data.data = transDictionary(result.data, response.config.options.trans)
+                    result.data = transDictionary(result.data, optionsConfig.trans,optionsConfig.trnasType)
                 }
             }
         }
-        return response.data
+        return result
     }
 }, error => {
     // 对响应错误做点什么

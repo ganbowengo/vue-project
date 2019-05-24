@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/assets/styles/index.scss"],"names":[],"mappings":"AAAA;AACA;AACA;AACA,eAAe","file":"static/css/common-a314aa42.chunk.css","sourcesContent":["html,\nbody,\n#app {\n  height: 100%; }\n"],"sourceRoot":""}

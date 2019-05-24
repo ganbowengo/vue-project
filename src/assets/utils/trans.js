@@ -12,10 +12,10 @@ const Dic = store.state
  * 将data中的code转换为name的工具函数
  * @param {Object} data 需要转换的对象
  * @param {Array} transWord 需要转换的字段组成的arr
- * @param {Object} Dic 整个字典
+ * @param {Boolean} type 是否保留原字段的值 新添加新字段  默认不保留 不添加
  * @return {} 返回转换过字典的数据
  */
-export function transDictionary(data = [], transWord = []) {
+export function transDictionary(data = [], transWord = [], type = false) {
     for (let word of transWord) {
         for (let key in data) {
             let item = data[key]
@@ -24,7 +24,7 @@ export function transDictionary(data = [], transWord = []) {
                 if (item.hasOwnProperty(word)) {
                     Dic[word].forEach(element => {
                         if (element.code === item[word]) {
-                            data[key][word] = element.name
+                            data[key][word + `${type ? '-name' : ''}`] = element.name
                         }
                     })
                 }
@@ -43,7 +43,7 @@ export function transDictionary(data = [], transWord = []) {
             if (key === word && !isType(item, 'object') && !isType(item, 'array')) {
                 Dic[word].forEach(element => {
                     if (element.code === item[word]) {
-                        data[word] = element.name
+                        data[word + `${type ? '-name' : ''}`] = element.name
                     }
                 })
             }

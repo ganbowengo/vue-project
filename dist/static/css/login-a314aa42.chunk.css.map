@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/pages/login/App.vue?49f0"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"static/css/login-a314aa42.chunk.css","sourcesContent":[".login {\n  width: 400px;\n  height: 200px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n"],"sourceRoot":""}
