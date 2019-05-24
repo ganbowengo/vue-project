@@ -1,8 +1,9 @@
 <template>
     <div class='label-box'>
-        <span>{{label}}</span>
+        <span class='label-text'>{{label}}</span>
         <Input 
-            v-model="value" 
+            :value="inputValue" 
+            class="label-input"
             :type="type" 
             :placeholder="placeholder" 
             :disabled="disabled"
@@ -11,6 +12,7 @@
             :clearable="clearable"
             :readonly="readonly"
             :size="size"
+            :style='styles'
             @on-focus="handleFocus" 
             @on-blur="handleBlur" 
             @on-change="handleChange" 
@@ -23,8 +25,12 @@
 
 <script>
 export default {
-    name: 'LabelInput',
+    name: 'label-input',
     props: {
+        value: {
+            type: [String, Number],
+            default: ''
+        },
         type: {
             type: String,
             default: 'text'
@@ -33,21 +39,54 @@ export default {
             type: String,
             default: ''
         },
-        inputValue: {
+        label: {
             type: [String, Number],
             default: ''
         },
         placeholder: {
             type: String,
-            default: ''
+            default: '请输入'
         },
         disabled:{
             type: Boolean,
             default: false
+        },
+        clearable:{
+            type: Boolean,
+            default: false
+        },
+        size: {
+            type: String,
+            default: 'default'
+        },
+        maxlength: {
+            type: Number
+        },
+        minlength: {
+            type: Number
+        },
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        name: {
+            type: String
+        },
+        width: {
+            type: [String, Number]
+        }
+    },
+    computed: {
+        styles() {
+            let style = {}
+            if (this.width) style = {width: this.width + 'px'}
+            return style
         }
     },
     data () {
-        return {}
+        return {
+            inputValue: this.value
+        }
     },
     methods: {
         handleChange(event) {
@@ -67,8 +106,8 @@ export default {
         }
     },
     watch: {
-        inputValue(val) {
-            this.value = val
+        value(val) {
+            this.inputValue = val
         }
     }
 }

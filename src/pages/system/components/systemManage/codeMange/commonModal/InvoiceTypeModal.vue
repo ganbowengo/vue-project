@@ -4,19 +4,11 @@
         :title="modalData.title"
         @on-ok="ok"
         @on-cancel="cancel">
-        <LabelInput></LabelInput>
-        <Form :model="formItem" :label-width="80">
-            <FormItem label="Input">
-                <Input v-model="formItem.input" placeholder="Enter something..."></Input>
-            </FormItem>
-            <FormItem label="Select">
-                <Select v-model="formItem.select">
-                    <Option value="beijing">New York</Option>
-                    <Option value="shanghai">London</Option>
-                    <Option value="shenzhen">Sydney</Option>
-                </Select>
-            </FormItem>
-        </Form>
+        <label-input label='发票类型代码及名称：' v-model='invoiceInfo.fplxdm' :width='width'></label-input>
+        <label-input label='发票种类代码：' v-model='invoiceInfo.fpzldm' :width='width' :disabled="disabled"></label-input>
+        <label-input label='发票种类名称：' v-model='invoiceInfo.fpzlmc' :width='width'></label-input>
+        <label-input label='发票种类简称：' v-model='invoiceInfo.fpzljc' :width='width'></label-input>
+        <label-input label='启用标志：' v-model='invoiceInfo.qybz' :width='width'></label-input>
     </Modal>
 </template>
 
@@ -24,28 +16,35 @@
 export default {
     data () {
         return {
+            width: 320,
+            disabled: false,
             modalData: {
                 show: false,
                 title: ''
             },
-            formItem: {
-                input: '',
-                Select: ''
-            }
+            invoiceInfo: {
+                fplxdm: '',
+                fpzldm: '',
+                fpzlmc: '',
+                fpzljc: '',
+                qybz: ''
+            }   
         }
     },
     methods: {
         open(row = '') {
             if (row) {
                 this.modalData.title = '修改发票种类代码'
+                this.invoiceInfo = this.globalTool.initAccept(this.invoiceInfo, row)
             } else {
                 this.modalData.title = '添加发票种类代码'
-                
+                this.invoiceInfo = this.globalTool.initEmpty(this.invoiceInfo)
             }
             this.modalData.show = true
+            this.disabled = !!row
         },
         ok() {
-
+            console.log('this.invoiceInfo', this.invoiceInfo)
         },
         cancel() {
 
