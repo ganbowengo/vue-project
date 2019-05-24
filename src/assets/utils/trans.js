@@ -1,7 +1,7 @@
 /**
  * 
  * author ganbowen
- * description 公共工具函数
+ * description 字典转换公共工具函数
  * created 2019/05/22 11:41:41
  * 
  */
@@ -23,7 +23,7 @@ export function transDictionary(data = [], transWord = []) {
             if (isType(item, 'object')) {
                 if (item.hasOwnProperty(word)) {
                     Dic[word].forEach(element => {
-                        if (item[word] === element.code) {
+                        if (element.code === item[word]) {
                             data[key][word] = element.name
                         }
                     })
