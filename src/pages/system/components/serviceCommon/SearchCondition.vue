@@ -51,7 +51,7 @@ export default {
         condition : {
             handler (val) {
                 let query = this.setSearchInfo(val)
-                this.$emit('queryData',query)
+                this.$emit('queryData', query)
             },
             deep: true
         }

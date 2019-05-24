@@ -5,7 +5,7 @@
             <Button type='primary' @click='add'>新增</Button>
             <Button type='primary' @click='del'>删除</Button>
         </div>
-        <Table border :columns="table.columns" :data="table.tableData"></Table>
+        <Table border :columns="table.columns" @on-selection-change='select' :data="table.tableData"></Table>
         <div class="fr mt10 mb10">
             <Page 
                 :total="table.page.total" 
@@ -15,7 +15,7 @@
                 @on-change='change'
                 @on-page-size-change='sizeChange' show-total show-sizer />
         </div>
-        <InvoiceTypeModal ref='InvoiceTypeModal'></InvoiceTypeModal>
+        <InvoiceTypeModal ref='InvoiceTypeModal' @search='query'></InvoiceTypeModal>
     </div>
 </template>
 
@@ -101,13 +101,13 @@ export default {
                     },
                     {
                         title: '发票类型代码名称',
-                        key: 'fplxdm',
+                        key: 'fplxdm-name',
                         type: 'text',
                         width: '200'
                     },
                     {
                         title: '启用标志',
-                        key: 'qybz',
+                        key: 'qybz-name',
                         type: 'text',
                         width: '100'
                     },
@@ -139,7 +139,8 @@ export default {
                     size: 10,
                     sizeOpts: [10,20,50]
                 }
-            }
+            },
+            selectedData: []
         }
     },
     computed: {
@@ -157,7 +158,8 @@ export default {
             query.currentPage = this.table.page.current
             this.http.post('/sys/fpzldm/searchFpzldm',{
                 options: {
-                    trans:['fplxdm','qybz']
+                    trans: ['fplxdm','qybz'],
+                    trnasType: true
                 },
                 params: query
             }).then(res => {
@@ -175,6 +177,13 @@ export default {
         },
         update(params) {
             this.$refs.InvoiceTypeModal.open(params.row)
+        },
+        select(row) {
+            let arr = []
+            for(let item of row){
+                arr.push(item.fpzldm)
+            }
+            this.selectedData = arr
         }
     }
 }
