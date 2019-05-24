@@ -33,9 +33,12 @@ import {
     Message,
     Form,
     FormItem,
+    RadioGroup,
+    Radio,
 } from 'iview'
 import 'iview/dist/styles/iview.css';
 import '@/assets/styles/index.scss';
+import '@/assets/styles/ivu-style-reset.scss';
 
 Vue.prototype.$Message = Message
 Vue.component('Button', Button)
@@ -56,6 +59,8 @@ Vue.component('DatePicker', DatePicker)
 Vue.component('Option', Option)
 Vue.component('Form', Form)
 Vue.component('FormItem', FormItem)
+Vue.component('RadioGroup', RadioGroup)
+Vue.component('Radio', Radio)
 
 
 Vue.prototype.http = http
