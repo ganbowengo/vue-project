@@ -9,6 +9,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
 import http from '@/assets/js/http'
+import globalTool from '@/assets/utils/global'
 import store from './vuex'
 import initCommonUi from '@system/common-ui'
 
@@ -58,11 +59,11 @@ Vue.component('FormItem', FormItem)
 
 
 Vue.prototype.http = http
-
+Vue.prototype.globalTool = globalTool
+initCommonUi()
 new Vue({
     el: '#app',
     router,
     store,
     render: (h) => h(App)
 })
-initCommonUi()
