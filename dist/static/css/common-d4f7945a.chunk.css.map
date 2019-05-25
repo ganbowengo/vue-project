@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/assets/styles/index.scss"],"names":[],"mappings":"AAAA,eAAe,YAAY,IAAI,YAAY,IAAI,WAAW,MAAM,gBAAgB,MAAM,mB","file":"static/css/common-d4f7945a.chunk.css","sourcesContent":["#app,body,html{height:100%}.fr{float:right}.fl{float:left}.mt10{margin-top:10px}.mb10{margin-bottom:10px}"],"sourceRoot":""}
