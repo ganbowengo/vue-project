@@ -16,14 +16,14 @@ const invoiceCodeSearch = require('./data/sys/invoiceCodeSearch')
 const urlReflectionData = {
     // '/frontend/sys/login' : login,
     // '/frontend/sys/token' : token,
-    '/frontend/sys/xtcsManagement/selectFileName' : about,
-    '/frontend/sys/user/queryUserPowerMenu' : menu,
-    '/sys/fpzldm/searchFpzldm' : invoiceCodeSearch,
+    '/frontend/sys/xtcsManagement/selectFileName': about,
+    '/frontend/sys/user/queryUserPowerMenu': menu,
+    '/sys/fpzldm/searchFpzldm': invoiceCodeSearch,
 }
 
 const mockInit = function () {
     let proxy = {}
-    for(let key in urlReflectionData){
+    for (let key in urlReflectionData) {
         proxy['POST ' + key] = (req, res) => {
             res.send(urlReflectionData[key])
         }
