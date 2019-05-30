@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * author ganbowen
  * description 字典转换公共工具函数
  * created 2019/05/22 11:41:41
- * 
+ *
  */
 import { isType } from './typeVali'
 import store from '@system/vuex/modules/dictionary'
@@ -15,7 +15,7 @@ const Dic = store.state
  * @param {Boolean} type 是否保留原字段的值 新添加新字段  默认不保留 不添加
  * @return {} 返回转换过字典的数据
  */
-export function transDictionary(data = [], transWord = [], type = false) {
+export function transDictionary (data = [], transWord = [], type = false) {
     for (let word of transWord) {
         for (let key in data) {
             let item = data[key]
@@ -53,12 +53,12 @@ export function transDictionary(data = [], transWord = [], type = false) {
 }
 
 /**
- * change code to name 
+ * change code to name
  * @param {String|Number} it 转换的字段的code
  * @param {String} word 转换的字段
  * @return {String} 装换后的name
  */
-export function changeCodeToName(it, word) {
+export function changeCodeToName (it, word) {
     for (let key of Dic[word]) {
         if (it === Dic[word][key].code) {
             it = Dic[word][key].name
@@ -74,7 +74,7 @@ export function changeCodeToName(it, word) {
  * @param {String} word 转换的字段
  * @return {String|Number} 装换后的code
  */
-export function changeNameToCode(it, word) {
+export function changeNameToCode (it, word) {
     for (let key of Dic[word]) {
         if (it === Dic[word][key].name) {
             it = Dic[word][key].code

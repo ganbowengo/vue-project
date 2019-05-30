@@ -1,5 +1,5 @@
 module.exports = {
-    "headers": {
-        "author": 'token-true'
-    },
+    'headers': {
+        'author': 'token-true'
+    }
 }

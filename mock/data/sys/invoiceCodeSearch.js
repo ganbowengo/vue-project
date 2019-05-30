@@ -1,63 +1,63 @@
 module.exports = {
-    "success": true,
-    "message": null,
-    "errorCode": "0",
-    "errorMsg": null,
-    "requestId": null,
-    "total": 9,
-    "data": [{
-        "fpzldm": "10004",
-        "fpzlmc": "增值税专用发票（六联无金额限制增值税专用发票增值税专用发票）",
-        "fpzljc": "六联无金额限制增值税专用发票增值税专用发票",
-        "fplxdm": "004",
-        "qybz": "1"
+    'success': true,
+    'message': null,
+    'errorCode': '0',
+    'errorMsg': null,
+    'requestId': null,
+    'total': 9,
+    'data': [{
+        'fpzldm': '10004',
+        'fpzlmc': '增值税专用发票（六联无金额限制增值税专用发票增值税专用发票）',
+        'fpzljc': '六联无金额限制增值税专用发票增值税专用发票',
+        'fplxdm': '004',
+        'qybz': '1'
     }, {
-        "fpzldm": "109982887373",
-        "fpzlmc": "增普",
-        "fpzljc": "增普",
-        "fplxdm": "007",
-        "qybz": "1"
+        'fpzldm': '109982887373',
+        'fpzlmc': '增普',
+        'fpzljc': '增普',
+        'fplxdm': '007',
+        'qybz': '1'
     }, {
-        "fpzldm": "11004",
-        "fpzlmc": "增值税专用发票",
-        "fpzljc": "增值税专用发票",
-        "fplxdm": "004",
-        "qybz": "1"
+        'fpzldm': '11004',
+        'fpzlmc': '增值税专用发票',
+        'fpzljc': '增值税专用发票',
+        'fplxdm': '004',
+        'qybz': '1'
     }, {
-        "fpzldm": "11005",
-        "fpzlmc": "机动车销售统一发票",
-        "fpzljc": "机动车销售统一发票",
-        "fplxdm": "005",
-        "qybz": "1"
+        'fpzldm': '11005',
+        'fpzlmc': '机动车销售统一发票',
+        'fpzljc': '机动车销售统一发票',
+        'fplxdm': '005',
+        'qybz': '1'
     }, {
-        "fpzldm": "11006",
-        "fpzlmc": "二手车",
-        "fpzljc": "二手车票",
-        "fplxdm": "006",
-        "qybz": "1"
+        'fpzldm': '11006',
+        'fpzlmc': '二手车',
+        'fpzljc': '二手车票',
+        'fplxdm': '006',
+        'qybz': '1'
     }, {
-        "fpzldm": "11007",
-        "fpzlmc": "增值税普通发票",
-        "fpzljc": "增值税普通发票",
-        "fplxdm": "007",
-        "qybz": "1"
+        'fpzldm': '11007',
+        'fpzlmc': '增值税普通发票',
+        'fpzljc': '增值税普通发票',
+        'fplxdm': '007',
+        'qybz': '1'
     }, {
-        "fpzldm": "11025",
-        "fpzlmc": "增值税普通发票(卷票)",
-        "fpzljc": "增值税普通发票(卷票)",
-        "fplxdm": "025",
-        "qybz": "1"
+        'fpzldm': '11025',
+        'fpzlmc': '增值税普通发票(卷票)',
+        'fpzljc': '增值税普通发票(卷票)',
+        'fplxdm': '025',
+        'qybz': '1'
     }, {
-        "fpzldm": "11026",
-        "fpzlmc": "增值税电子普通发票",
-        "fpzljc": "增值税电子普通发票",
-        "fplxdm": "026",
-        "qybz": "1"
+        'fpzldm': '11026',
+        'fpzlmc': '增值税电子普通发票',
+        'fpzljc': '增值税电子普通发票',
+        'fplxdm': '026',
+        'qybz': '1'
     }, {
-        "fpzldm": "91026",
-        "fpzlmc": "增值税电子普通发票（通行费）",
-        "fpzljc": "增值税电子普通发票（通行费）",
-        "fplxdm": "026",
-        "qybz": "1"
+        'fpzldm': '91026',
+        'fpzlmc': '增值税电子普通发票（通行费）',
+        'fpzljc': '增值税电子普通发票（通行费）',
+        'fplxdm': '026',
+        'qybz': '1'
     }]
 }

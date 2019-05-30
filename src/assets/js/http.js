@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * author ganbowen
  * description axios 封装文件
  * created 2019/05/4 14:33:09
- * 
+ *
  */
 import axios from 'axios'
 import Vue from 'vue'
@@ -15,18 +15,18 @@ const VUE_UI_OBJ = new Vue()
 const BASE_URL = '/frontend'
 const STATUS_LIST = [401, 403, 500]
 const MESSAGE_LIST = ['没有访问权限!', 'token错误，请重新登录！', 'token为空，请重新登录！', 'token失效，请重新登录！', 'token验签错误，请重新登录！', 'token超时，请重新登录！']
-const NULL_TOKEN_URL = ['/sys/token','/sys/login']
-const jumpLogin = () => { 
-    window.location.href = 'login.html' 
+const NULL_TOKEN_URL = ['/sys/token', '/sys/login']
+const jumpLogin = () => {
+    window.location.href = 'login.html'
 }
 
 axios.interceptors.request.use(config => {
     // 在发送请求之前做些什么
-    let token = sessionStorage.getItem('token')
+    let token = window.sessionStorage.getItem('token')
     if (token) { // mock 开启时不判断是否有token
         config.headers.author = token
     } else {
-        if(NULL_TOKEN_URL.indexOf(config.url) < 0){
+        if (NULL_TOKEN_URL.indexOf(config.url) < 0) {
             jumpLogin()
         }
     }
@@ -53,7 +53,7 @@ axios.interceptors.response.use(response => {
             let optionsConfig = response.config.options
             if (optionsConfig) {
                 if (result && result.data) {
-                    result.data = transDictionary(result.data, optionsConfig.trans,optionsConfig.trnasType)
+                    result.data = transDictionary(result.data, optionsConfig.trans, optionsConfig.trnasType)
                 }
             }
         }

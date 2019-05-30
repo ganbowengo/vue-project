@@ -3,9 +3,9 @@ const state = {
 }
 
 const mutations = {
-    breadcrumb(state, url) {
-        url && sessionStorage.setItem('url',url)
-        url = sessionStorage.getItem('url') || ''
+    breadcrumb (state, url) {
+        url && window.sessionStorage.setItem('url', url)
+        url = window.sessionStorage.getItem('url') || ''
         state.menuName = url.split(',')
     }
 }
