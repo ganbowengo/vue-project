@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * author ganbowen
  * description system 页面的主文件
  * created 2019/05/08 14:33:57
- * 
+ *
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -34,11 +34,11 @@ import {
     Form,
     FormItem,
     RadioGroup,
-    Radio,
+    Radio
 } from 'iview'
-import 'iview/dist/styles/iview.css';
-import '@/assets/styles/index.scss';
-import '@/assets/styles/ivu-style-reset.scss';
+import 'iview/dist/styles/iview.css'
+import '@/assets/styles/index.scss'
+import '@/assets/styles/ivu-style-reset.scss'
 
 Vue.prototype.$Message = Message
 Vue.component('Button', Button)
@@ -62,11 +62,10 @@ Vue.component('FormItem', FormItem)
 Vue.component('RadioGroup', RadioGroup)
 Vue.component('Radio', Radio)
 
-
 Vue.prototype.http = http
 Vue.prototype.globalTool = globalTool
 initCommonUi()
-new Vue({
+export default new Vue({
     el: '#app',
     router,
     store,

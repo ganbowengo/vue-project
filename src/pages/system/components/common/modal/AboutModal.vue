@@ -7,6 +7,7 @@
         <div slot="footer"></div>
     </Modal>
 </template>
+
 <script>
     export default {
         data () {

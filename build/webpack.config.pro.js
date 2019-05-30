@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * author ganbowen
  * description 生产环境
  * created 2019/05/03 14:28:18
- * 
+ *
  */
 'use strict'
 
@@ -12,7 +12,7 @@ const baseConfig = require('./webpack.config.base')
 const CleanWebpackPlugin = require('clean-webpack-plugin') // 清空打包文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // css分离打包处理
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin // 打包分析工具
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin') // 多线程压缩js 打包速度优化
+// const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin') // 多线程压缩js 打包速度优化
 module.exports = merge(baseConfig, {
     mode: 'production',
     devtool: 'hidden-source-map',
@@ -21,22 +21,22 @@ module.exports = merge(baseConfig, {
             test: /\.scss$/,
             use: [
                 MiniCssExtractPlugin.loader,
-                "css-loader",
+                'css-loader',
                 {
                     loader: 'postcss-loader',
                     options: {
                         plugins: [require('autoprefixer'), require('cssnano')]
                     }
                 },
-                "sass-loader"
+                'sass-loader'
             ]
         }]
     },
     plugins: [
-        //提取css
+        // 提取css
         new MiniCssExtractPlugin({
-            filename: "static/css/[name]-[hash:8].css",
-            chunkFilename: "static/css/[name]-[hash:8].chunk.css"
+            filename: 'static/css/[name]-[hash:8].css',
+            chunkFilename: 'static/css/[name]-[hash:8].chunk.css'
         }),
         new CleanWebpackPlugin(),
         new BundleAnalyzerPlugin({
@@ -46,7 +46,7 @@ module.exports = merge(baseConfig, {
     optimization: {
         minimize: true,
         splitChunks: {
-            chunks: "async",
+            chunks: 'async',
             cacheGroups: {
                 common: {
                     name: 'common',
@@ -56,9 +56,9 @@ module.exports = merge(baseConfig, {
                     minChunks: 2 // 使用含n个及以上的打包为一个文件
                 },
                 vendor: {
-                    name: "vendor",
+                    name: 'vendor',
                     test: /[\\/]node_modules[\\/]/,
-                    chunks: "all",
+                    chunks: 'all',
                     priority: 10,
                     minChunks: 2
                 }
@@ -66,7 +66,7 @@ module.exports = merge(baseConfig, {
         },
         runtimeChunk: {
             name: 'manifest'
-        },
+        }
         // minimizer: [
         //     // 多线程压缩JS
         //     new ParallelUglifyPlugin({

@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * author ganbowen
  * description 基础配置
  * created 2019/05/03 14:30:18
- * 
+ *
  */
 'use strict'
 
@@ -14,7 +14,7 @@ const {
     VueLoaderPlugin
 } = require('vue-loader')
 
-//找到所有的入口
+// 找到所有的入口
 const entrys = () => {
     let map = {}
     fs.readdirSync(path.resolve(__dirname, '../src/pages')).forEach(filename => {
@@ -23,7 +23,7 @@ const entrys = () => {
     return map
 }
 
-//设置出口的HTML
+// 设置出口的HTML
 const html = fs.readdirSync(path.resolve(__dirname, '../src/pages')).map(pathName => new HtmlWebpackPlugin({
     title: `--${pathName.toUpperCase()}--`,
     template: `index.html`,
@@ -39,50 +39,56 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: `static/js/[name]-[hash:8].js`,
-        chunkFilename: `static/js/[name]-[hash:8].js`,
+        chunkFilename: `static/js/[name]-[hash:8].js`
     },
-    //文件映射 
+    // 文件映射
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': path.resolve(__dirname, '../src'),
             '@system': path.resolve(__dirname, '../src/pages/system'),
-            '&': path.resolve(__dirname, '../'),
+            '&': path.resolve(__dirname, '../')
         }
     },
     module: {
         rules: [{
-                test: /\.js$/,
-                loader: 'babel-loader',
-                include: [path.resolve(__dirname, '../src')],
-                exclude: [path.resolve(__dirname, '../node_modules')]
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader'
-            },
-            {
-                test: /\.scss$/,
-                exclude: [/node_modules/]
-            },
-            {
-                test: /\.css$/,
-                loaders: [
-                    'style-loader', 'css-loader'
-                ]
-            },
-            {
-                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                use: {
-                    loader: 'url-loader',
-                    options: {
-                        name: "[name]-[hash:5].min.[ext]",
-                        limit: 5000,
-                        outputPath: "static/css/fonts"
-                    }
+            test: /\.js$/,
+            loader: 'babel-loader',
+            include: [path.resolve(__dirname, '../src')],
+            exclude: [path.resolve(__dirname, '../node_modules')]
+        },
+        {
+            test: /\.vue$/,
+            loader: 'vue-loader'
+        },
+        {
+            test: /\.scss$/,
+            exclude: [/node_modules/]
+        },
+        {
+            test: /\.css$/,
+            loaders: [
+                'style-loader', 'css-loader'
+            ]
+        },
+        {
+            test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+            use: {
+                loader: 'url-loader',
+                options: {
+                    name: '[name]-[hash:5].min.[ext]',
+                    limit: 5000,
+                    outputPath: 'static/css/fonts'
                 }
             }
+        },
+        {
+            test: /\.(js)$/,
+            loader: 'eslint-loader',
+            exclude: /node_modules/,
+            enforce: 'pre'
+        }
         ]
     },
     plugins: [

@@ -63,7 +63,7 @@
                     this.openNames = open_names.slice(0,-1)
                     this.activeName = active_name
                     this.$nextTick(()=>{
-                        this.$refs.siderMenu.updateOpened();
+                        this.$refs.siderMenu.updateOpened()
                         this.$refs.siderMenu.updateActiveName()
                     })
                 }
