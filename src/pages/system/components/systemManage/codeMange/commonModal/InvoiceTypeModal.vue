@@ -59,9 +59,9 @@ export default {
             if (this.disabled) {
                 url = '/sys/fpzldm/updateFpzldm'
             }
-            this.http.post(url,{ params }).then(res => {
+            this.http.post(url,params).then(res => {
                  if (res.success) {
-                    popup.success(res.message || '操作成功')
+                    this.$Message.success(res.message || '操作成功')
                     this.$emit('search')
                 }
             }).catch(error => {
