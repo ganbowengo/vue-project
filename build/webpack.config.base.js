@@ -18,7 +18,7 @@ const {
 const entrys = () => {
     let map = {}
     fs.readdirSync(path.resolve(__dirname, '../src/pages')).forEach(filename => {
-        map[filename] = path.join(__dirname, `../src/pages/${filename}/${filename}.js`)
+        map[filename] = ['@babel/polyfill', path.join(__dirname, `../src/pages/${filename}/${filename}.js`)]
     })
     return map
 }
@@ -33,7 +33,7 @@ const html = fs.readdirSync(path.resolve(__dirname, '../src/pages')).map(pathNam
         collapseWhitespace: false // 压缩选项
     }
 }))
-
+console.log('asdfasf1234567', path.join(__dirname, '..', '/node_modules/iview'), path.resolve(__dirname, '../node_modules/iview'))
 module.exports = {
     entry: entrys,
     output: {
@@ -52,43 +52,44 @@ module.exports = {
         }
     },
     module: {
-        rules: [{
-            test: /\.js$/,
-            loader: 'babel-loader',
-            include: [path.resolve(__dirname, '../src')],
-            exclude: [path.resolve(__dirname, '../node_modules')]
-        },
-        {
-            test: /\.vue$/,
-            loader: 'vue-loader'
-        },
-        {
-            test: /\.scss$/,
-            exclude: [/node_modules/]
-        },
-        {
-            test: /\.css$/,
-            loaders: [
-                'style-loader', 'css-loader'
-            ]
-        },
-        {
-            test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-            use: {
-                loader: 'url-loader',
-                options: {
-                    name: '[name]-[hash:5].min.[ext]',
-                    limit: 5000,
-                    outputPath: 'static/css/fonts'
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                include: [path.resolve(__dirname, '../src')],
+                exclude: [/node_modules/]
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
+                test: /\.scss$/,
+                exclude: [/node_modules/]
+            },
+            {
+                test: /\.css$/,
+                loaders: [
+                    'style-loader', 'css-loader'
+                ]
+            },
+            {
+                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        name: '[name]-[hash:5].min.[ext]',
+                        limit: 5000,
+                        outputPath: 'static/css/fonts'
+                    }
                 }
+            },
+            {
+                test: /\.(js)$/,
+                loader: 'eslint-loader',
+                exclude: /node_modules/,
+                enforce: 'pre'
             }
-        },
-        {
-            test: /\.(js)$/,
-            loader: 'eslint-loader',
-            exclude: /node_modules/,
-            enforce: 'pre'
-        }
         ]
     },
     plugins: [

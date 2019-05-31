@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import systemCodeInvoiceType from '../components/systemManage/codeMange/InvoiceTypeManage'
-import systemCodeInvoiceCode from '../components/systemManage/codeMange/InvoiceCodeManage'
+const systemCodeInvoiceType = () => import('../components/systemManage/codeMange/InvoiceTypeManage')
+const systemCodeInvoiceCode = () => import('../components/systemManage/codeMange/InvoiceCodeManage')
 
 Vue.use(VueRouter)
 
