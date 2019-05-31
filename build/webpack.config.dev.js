@@ -44,6 +44,7 @@ module.exports = merge(baseConfig, {
         inline: true,
         hot: true,
         openPage: 'login.html',
+        disableHostCheck: true,
         proxy
         // proxy: {
         //     '/proxy': {
