@@ -1,6 +1,14 @@
 {
-    "plugins": [["import", {
-      "libraryName": "iview",
-      "libraryDirectory": "src/components"
-    }]]
-  }
+  "presets" : ["@babel/preset-env"],
+  "plugins": [
+    // [
+    //   "import", 
+    //   {
+    //   "libraryName": "iview",
+    //   "libraryDirectory": "src/components"
+    //   }
+    // ],
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-runtime"
+  ]
+}

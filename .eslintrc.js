@@ -1,7 +1,8 @@
 module.exports = {
     "env": {
         "browser": true,
-        "node": true
+        "node": true,
+        "es6": true
     },
     'plugins': [
         'html'
@@ -18,8 +19,9 @@ module.exports = {
         'indent': ['error', 4, {'SwitchCase': 1}],
         'object-curly-spacing': 0
     },
-    'parserOptions': {
-        'parser': 'babel-eslint'
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6
     },
     "globals": {
         "MOCK": false

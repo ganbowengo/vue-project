@@ -15,7 +15,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 // const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin') // 多线程压缩js 打包速度优化
 module.exports = merge(baseConfig, {
     mode: 'production',
-    devtool: 'hidden-source-map',
+    // devtool: 'hidden-source-map',
     module: {
         rules: [{
             test: /\.scss$/,
