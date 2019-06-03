@@ -3,12 +3,12 @@
         <Layout>
             <headerMenu></headerMenu>
             <Layout>
-                <Sider hide-trigger :width='240' :style="{background: '#fff'}">
+                <Sider hide-trigger width='240' style="background: '#fff'">
                     <sliderMenu></sliderMenu>
                 </Sider>
                 <Layout>
                     <Breadcrumb class='breadcrumb'>
-                        <BreadcrumbItem v-for='item,index in menuName' :key='index'>{{item}}</BreadcrumbItem>
+                        <BreadcrumbItem v-for='(item,index) in menuName' :key='index'>{{item}}</BreadcrumbItem>
                     </Breadcrumb>
                     <Content class='content'>
                        <router-view></router-view>
