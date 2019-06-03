@@ -70,6 +70,7 @@
 
 .label-box{
     margin-bottom: 10px;
+    display: inline-block;
     .label-text{
         display: inline-block;
         width: 140px;
@@ -78,5 +79,13 @@
     .label-slot{
         display: inline-block;
         width: 300px;
+    }
+    .tree-dropdown{
+        width: 100%;
+        .ivu-select-dropdown{
+            padding: 5px;
+            max-height: 300px;
+            overflow: auto;
+        }
     }
 }

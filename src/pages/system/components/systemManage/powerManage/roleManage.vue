@@ -15,73 +15,30 @@
                 @on-change='change'
                 @on-page-size-change='sizeChange' show-total show-sizer />
         </div>
-        <InvoiceCodeModal ref='InvoiceCodeModal' :fpzldm='fpzldm' @search='query'></InvoiceCodeModal>
+        <roleModal ref='roleModal' :fpzldm='fpzldm' @search='query'></roleModal>
     </div>
 </template>
 
 <script>
 
 import SearchCondition from '../../serviceCommon/SearchCondition'
-import InvoiceCodeModal from './commonModal/InvoiceCodeModal'
+import roleModal from './commonModal/roleModal'
 import pageMixin from '@system/mixins/systemPageMixin'
-import {mapState} from 'vuex'
 export default {
-    components: { SearchCondition, InvoiceCodeModal },
+    components: { SearchCondition, roleModal },
     mixins: [pageMixin],
     data() {
         return {
             searchInfo: {},
+            powerTree: [],
             condition: [
                 {
                     index: 1,
                     value: '',
-                    name: 'fplxdm',
-                    type: 'select',
-                    label: '发票种类代码',
-                    placeholder: '请选择',
-                    options: []
-                },
-                {
-                    index: 2,
-                    value: '',
-                    name: 'fpjc',
+                    name: 'xtjsmc',
                     type: 'input',
-                    label: '发票种类简称',
+                    label: '角色名称',
                     placeholder: '请输入'
-                },
-                {
-                    index: 3,
-                    value: '',
-                    type: 'input',
-                    name: 'fpdm',
-                    label: '发票代码',
-                    placeholder: '请输入'
-                },
-                {
-                    index: 4,
-                    value: '',
-                    type: 'input',
-                    name: 'fpmc',
-                    label: '发票名称',
-                    placeholder: '请输入'
-                },
-                {
-                    index: 5,
-                    value: '',
-                    name: 'ssnf',
-                    type: 'select',
-                    label: '年份',
-                    placeholder: '请选择',
-                    options: []
-                },
-                {
-                    index: 6,
-                    value: '',
-                    name: 'qybz',
-                    type: 'select',
-                    label: '启用标志',
-                    placeholder: '请选择',
-                    options: []
                 },
                 {
                     type: 'button',
@@ -98,33 +55,26 @@ export default {
                         align: 'center'
                     },
                     {
-                        title: '发票代码',
-                        key: 'fpdm',
+                        title: '角色名称',
+                        key: 'xtjsmc',
                         type: 'text',
                         width: '200'
                     },
-                    {
-                        title: '发票名称',
-                        key: 'fpmc',
+                    {	
+                        title: '系统权限',
+                        key: 'xtqx-name',
                         type: 'text',
                         width: '200'
-                    },
-                    {
-                        title: '发票种类简称',
-                        key: 'fpjc',
-                        type: 'text'
-                    },
-                    {
-                        title: '发票种类代码',
-                        key: 'fpzldm',
-                        type: 'text',
-                        width: '120'
                     },
                     {
                         title: '启用标志',
                         key: 'qybz-name',
-                        type: 'text',
-                        width: '120'
+                        type: 'text'
+                    },
+                    {
+                        title: '备注',
+                        key: 'bz',
+                        type: 'text'
                     },
                     {
                         title: '操作',
@@ -135,7 +85,8 @@ export default {
                                 h('Button', {
                                     props: {
                                         type: 'primary',
-                                        size: 'small'
+                                        size: 'small',
+                                        disabled: params.row.swjgdm !== sessionStorage.getItem('orgCode')
                                     },
                                     on: {
                                         click: () => {
@@ -159,38 +110,14 @@ export default {
             fpzldm: []
         }
     },
-    computed: {
-        ...mapState('dictionary', ['qybz'])
-    },
-    created() {
-        this.http.get('/sys/fpzldm/searchAllFpzldm', {}).then(res => {
-            if (res.success) {
-                let resData = res.data
-                let invoiceTypeList = []
-                resData.map(function (item) {
-                    invoiceTypeList.push({
-                        name: item.fpzlmc + ' ' + item.fpzldm,
-                        code: item.fpzldm
-                    })
-                })
-                 this.condition[0].options = invoiceTypeList
-                 this.fpzldm = invoiceTypeList
-            }
-        })
-        this.condition[4].options = Array.from({length:50}, (v,k) => {return {
-            code: k + 2002,
-            name: k + 2002 + '年'
-        }})
-        this.condition[5].options = this.qybz
-    },
     methods: {
         query(query) {
             query = query || this.searchInfo
             query.pageSize = this.table.page.size
-            query.currentPage = this.table.page.current
-            this.http.post('/sys/fpdm/searchFpdm',{
+            query.pageNo = this.table.page.current
+            this.http.post('/sys/role/queryRole',{
                 options: {
-                    trans: ['qybz'],
+                    trans: ['xtqx','qybz'],
                     trnasType: true
                 },
                 params: query
@@ -204,7 +131,7 @@ export default {
             })
         },
         add() {
-            this.$refs.InvoiceCodeModal.open()
+            this.$refs.roleModal.open()
         },
         del() {
             let delData = this.delInit()
@@ -215,8 +142,8 @@ export default {
                 this.$Message.warning('所选数据包含已启用')
                 return
             }
-            this.http.post('/sys/fpdm/deleteFpdm',{
-                fpdm: delData.join(',')
+            this.http.post('/sys/role/deleteRole',{
+                xtjsdm: delData.join(',')
             }).then(res => {
                 if(res.success){
                     this.$Message.success(res.message || '操作成功')
@@ -232,13 +159,13 @@ export default {
                 if(item.qybz === '1'){
                     return false
                 }else{
-                    arr.push(item.fpdm)
+                    arr.push(item.xtjsdm)
                 }
             }
             return arr
         },
         update(params) {
-            this.$refs.InvoiceCodeModal.open(params.row)
+            this.$refs.roleModal.open(params.row)
         },
         select(row) {
             this.selectedData = row

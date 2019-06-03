@@ -34,9 +34,10 @@ import {
     Form,
     FormItem,
     RadioGroup,
-    Radio
+    Radio,
+    Tree,
+    Dropdown
 } from 'iview'
-// import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import '@/assets/styles/index.scss'
 import '@/assets/styles/ivu-style-reset.scss'
@@ -62,8 +63,9 @@ Vue.component('Form', Form)
 Vue.component('FormItem', FormItem)
 Vue.component('RadioGroup', RadioGroup)
 Vue.component('Radio', Radio)
+Vue.component('Tree', Tree)
+Vue.component('Dropdown', Dropdown)
 
-// Vue.use(iView)
 Vue.prototype.http = http
 Vue.prototype.globalTool = globalTool
 initCommonUi()
