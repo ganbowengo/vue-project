@@ -24,7 +24,7 @@
 import SearchCondition from '../../serviceCommon/SearchCondition'
 import InvoiceTypeModal from './commonModal/InvoiceTypeModal'
 import pageMixin from '@system/mixins/systemPageMixin'
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 export default {
     components: { SearchCondition, InvoiceTypeModal },
     mixins: [pageMixin],
@@ -33,6 +33,7 @@ export default {
             searchInfo: {},
             condition: [
                 {
+                    index: 1,
                     value: '',
                     name: 'fpzldm',
                     type: 'input',
@@ -40,6 +41,7 @@ export default {
                     placeholder: '请输入'
                 },
                 {
+                    index: 2,
                     value: '',
                     name: 'fpzlmc',
                     type: 'input',
@@ -47,6 +49,7 @@ export default {
                     placeholder: '请输入'
                 },
                 {
+                    index: 3,
                     value: '',
                     type: 'input',
                     name: 'fpzljc',
@@ -54,6 +57,7 @@ export default {
                     placeholder: '请输入'
                 },
                 {
+                    index: 4,
                     value: '',
                     name: 'fplxdm',
                     type: 'select',
@@ -62,6 +66,7 @@ export default {
                     options: []
                 },
                 {
+                    index: 5,
                     value: '',
                     name: 'qybz',
                     type: 'select',
@@ -183,7 +188,7 @@ export default {
                 return
             }
             this.http.post('/sys/fpzldm/deleteFpzldm',{
-                fplxdm:delData
+                fplxdm: delData.join(',')
             }).then(res => {
                 if(res.success){
                     this.$Message.success(res.message || '操作成功')

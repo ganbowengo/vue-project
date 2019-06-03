@@ -5,7 +5,8 @@ module.exports = {
         "es6": true
     },
     'plugins': [
-        'html'
+        'html',
+        'vue'
     ],
     'extends': [
         'standard'

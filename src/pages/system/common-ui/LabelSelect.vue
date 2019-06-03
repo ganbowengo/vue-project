@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         handleChange(event) {
-            this.$emit('on-change', event, this.value)
+            this.$emit('on-change', event)
         },
         handleInput(event) {
             this.$emit('input', event, this.value)
