@@ -20,21 +20,21 @@
 </template>
 
 <script>
-    import {mapGetters, mapActions} from 'vuex'
-    import headerMenu from './components/common/HeaderMenu.vue'
-    import sliderMenu from './components/common/SiderMenu.vue'
-    export default {
-        components:{headerMenu, sliderMenu},
-        computed:{
-            ...mapGetters('menu',['menuName'])
-        },
-        created() {
-            this.breadcrumb()
-        },
-        methods: {
-            ...mapActions('menu',['breadcrumb'])
-        }
+import {mapGetters, mapActions} from 'vuex'
+import headerMenu from './components/common/HeaderMenu.vue'
+import sliderMenu from './components/common/SiderMenu.vue'
+export default {
+    components:{headerMenu, sliderMenu},
+    computed:{
+        ...mapGetters('menu',['menuName'])
+    },
+    created() {
+        this.breadcrumb()
+    },
+    methods: {
+        ...mapActions('menu',['breadcrumb'])
     }
+}
 </script>
 
 <style lang="scss" scoped>

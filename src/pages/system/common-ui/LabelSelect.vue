@@ -45,7 +45,7 @@ export default {
             type: [Array],
             default: () => []
         },
-         width: {
+        width: {
             type: [String, Number]
         },
         label: {

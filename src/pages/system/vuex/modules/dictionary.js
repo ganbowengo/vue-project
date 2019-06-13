@@ -52,9 +52,9 @@ const state = {
 }
 
 const mutations = {
-    fplxdm (state) {},
-    qybz (state) {},
-    xtqx (state) {}
+    fplxdm () {},
+    qybz () {},
+    xtqx () {}
 }
 
 const actions = {

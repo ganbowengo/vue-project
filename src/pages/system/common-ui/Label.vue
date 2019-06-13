@@ -16,7 +16,7 @@ export default {
             default: ''
         },
         width: {
-             type: [String, Number]
+            type: [String, Number]
         }
     },
     computed: {
