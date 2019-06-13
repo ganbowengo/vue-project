@@ -67,7 +67,7 @@ export default {
                 url = '/sys/fpdm/updateFpdm'
             }
             this.http.post(url,params).then(res => {
-                 if (res.success) {
+                if (res.success) {
                     this.$Message.success(res.message || '操作成功')
                     this.$emit('search')
                 }

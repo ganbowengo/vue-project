@@ -173,8 +173,8 @@ export default {
                         code: item.fpzldm
                     })
                 })
-                 this.condition[0].options = invoiceTypeList
-                 this.fpzldm = invoiceTypeList
+                this.condition[0].options = invoiceTypeList
+                this.fpzldm = invoiceTypeList
             }
         })
         this.condition[4].options = Array.from({length:50}, (v,k) => {return {
