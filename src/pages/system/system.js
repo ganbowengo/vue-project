@@ -42,6 +42,8 @@ import 'iview/dist/styles/iview.css'
 import '@/assets/styles/index.scss'
 import '@/assets/styles/ivu-style-reset.scss'
 
+Vue.prototype.http = http
+Vue.prototype.globalTool = globalTool
 Vue.prototype.$Message = Message
 Vue.component('Button', Button)
 Vue.component('Table', Table)
@@ -66,8 +68,6 @@ Vue.component('Radio', Radio)
 Vue.component('Tree', Tree)
 Vue.component('Dropdown', Dropdown)
 
-Vue.prototype.http = http
-Vue.prototype.globalTool = globalTool
 initCommonUi()
 export default new Vue({
     el: '#app',

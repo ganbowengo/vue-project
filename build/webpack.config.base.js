@@ -26,20 +26,19 @@ const entrys = () => {
 // 设置出口的HTML
 const html = fs.readdirSync(path.resolve(__dirname, '../src/pages')).map(pathName => new HtmlWebpackPlugin({
     title: `--${pathName.toUpperCase()}--`,
-    template: `index.html`,
+    template: 'index.html',
     filename: `${pathName}.html`,
     chunks: ['common', 'manifest', 'vendor', pathName],
     minify: {
         collapseWhitespace: false // 压缩选项
     }
 }))
-console.log('asdfasf1234567', path.join(__dirname, '..', '/node_modules/iview'), path.resolve(__dirname, '../node_modules/iview'))
 module.exports = {
     entry: entrys,
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: `static/js/[name]-[hash:8].js`,
-        chunkFilename: `static/js/[name]-[hash:8].js`
+        filename: 'static/js/[name]-[hash:8].js',
+        chunkFilename: 'static/js/[name]-[hash:8].js'
     },
     // 文件映射
     resolve: {
@@ -52,11 +51,21 @@ module.exports = {
         }
     },
     module: {
-        rules: [
+        rules: [{
+                test: /\.(js|vue)$/,
+                loader: 'eslint-loader',
+                enforce: 'pre',
+                //指定检查的目录
+                include: [path.resolve(__dirname, '../src')],
+                //eslint检查报告的格式规范
+                options: {
+                    formatter: require('eslint-friendly-formatter')
+                }
+            },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [path.resolve(__dirname, '../src')],
+                include: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../node_modules/iview')],
                 exclude: [/node_modules/]
             },
             {
@@ -83,12 +92,6 @@ module.exports = {
                         outputPath: 'static/css/fonts'
                     }
                 }
-            },
-            {
-                test: /\.(js)$/,
-                loader: 'eslint-loader',
-                exclude: /node_modules/,
-                enforce: 'pre'
             }
         ]
     },

@@ -17,7 +17,7 @@ export default {
     components: {AboutModal},
     methods: {
         logout () {
-             this.http.get('/sys/logout', {}).then(res => {
+            this.http.get('/sys/logout', {}).then(res => {
                 if (res.success) {
                     window.location.href = 'login.html'
                 }

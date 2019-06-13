@@ -1,6 +1,6 @@
 <template>
     <div class="serch-box">
-        <template v-for='item in condition'>
+        <div v-for='item in condition' :key='item.name'>
             <div v-if='item.type === "input"' class="search-box">
                 <Input v-model="item.value" :placeholder='item.placeholder'>
                     <span slot="prepend">{{item.label}}</span>
@@ -16,10 +16,10 @@
                 <label>{{item.label}}</label>
                 <DatePicker v-model="item.value" style='width:100%;'></DatePicker>
             </div>
-            <div v-else='item.type === "button"' class="search-box box-button">
+            <div v-else-if='item.type === "button"' class="search-box box-button">
                 <Button :type='item.color' @click="handleClick(item.fn)">{{item.label}}</Button>
             </div>
-        </template>
+        </div>
     </div>
 </template>
 
@@ -63,6 +63,9 @@ export default {
     .serch-box{
         border-bottom: 1px solid #ddd;
         margin-bottom: 10px;
+        &>div{
+            display: inline-block;
+        }
         .box-button{
             border: 0;
         }

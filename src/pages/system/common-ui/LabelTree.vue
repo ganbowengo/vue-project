@@ -61,13 +61,13 @@ export default {
         }
     },
     methods: {
-        clickOutside(event) {
+        clickOutside() {
             this.visible = false
         },
         checkChange(e) {
             this.$emit('check-change', e)
         },   
-        handleFocus(event) {
+        handleFocus() {
             this.visible = true
         },
         handleInput(event) {

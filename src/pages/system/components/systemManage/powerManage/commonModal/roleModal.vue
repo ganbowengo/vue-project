@@ -78,7 +78,7 @@ export default {
         this.http.get('/basic/basicCode/getUserXtqx',{}).then(res => {
             if(res.success){
                 let data = res.data[0] || {}
-                 if (data.xtqx == 0) {
+                if (data.xtqx == 0) {
                     this.xtqxList = [{code: '1', name: '管理员'}]
                 } else {
                     this.xtqxList = this.xtqx
@@ -113,7 +113,7 @@ export default {
             let params = this.invoiceInfo
             params.jbmkdm = this.treeData.treeId
             this.http.post('/sys/role/saveRole', params).then(res => {
-                 if (res.success) {
+                if (res.success) {
                     this.$Message.success(res.message || '操作成功')
                     this.$emit('search')
                 }
