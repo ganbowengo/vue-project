@@ -7,12 +7,11 @@
  */
 'use strict'
 
-const path = require('path')
+const conf = require('./conf')
 const merge = require('webpack-merge')
-const webpack = require('webpack')
 const baseConfig = require('./webpack.config.base')
 const apiMocker = require('webpack-api-mocker')
-const mocker = path.resolve(__dirname, '../mock/mock-config.js')
+const mocker = conf.resolve('mock/mock-config.js')
 const proxy = {
     '/frontend': {
         target: 'http://192.168.2.231:8000',
@@ -22,14 +21,14 @@ const proxy = {
         }
     }
 }
-const MOCK = true
+
 module.exports = merge(baseConfig, {
     mode: 'development',
     // 运行的配置
     devtool: 'cheap-module-eval-source-map', // 可以在开发环境看到源文件
     devServer: {
         before (app) {
-            if (MOCK) {
+            if (conf.MOCK) {
                 apiMocker(app, mocker, {
                     proxy,
                     changeHost: true
@@ -39,8 +38,8 @@ module.exports = merge(baseConfig, {
         open: true,
         compress: true,
         clientLogLevel: 'warning',
-        host: '0.0.0.0',
-        port: '8090',
+        host: conf.host,
+        port: conf.port,
         inline: true,
         hot: true,
         openPage: 'login.html',
@@ -75,10 +74,5 @@ module.exports = merge(baseConfig, {
                 'sass-loader'
             ]
         }]
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            MOCK
-        })
-    ]
+    }
 })
