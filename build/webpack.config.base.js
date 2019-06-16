@@ -6,25 +6,41 @@
  *
  */
 'use strict'
-
+const os = require('os')
 const fs = require('fs')
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {
-    VueLoaderPlugin
-} = require('vue-loader')
+const conf = require('./conf')
+const webpack = require('webpack')
+const HappyPack = require('happypack') // 多线程打包
+const { VueLoaderPlugin } = require('vue-loader') // 处理.vue文件
+const HtmlWebpackPlugin = require('html-webpack-plugin') //动态生成HTML模板
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // css分离打包处理
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length }) // 获取cpu数量
+const cssLoader = new MiniCssExtractPlugin({
+    use: [
+        'happypack/loader?id=css'
+    ]
+})
+
+const resolve = conf.resolve
+// 生成happypack plugin
+const creatHappypack = (id, loaders) => new HappyPack({
+    id,
+    loaders,
+    threadPool: happyThreadPool
+})
 
 // 找到所有的入口
 const entrys = () => {
     let map = {}
-    fs.readdirSync(path.resolve(__dirname, '../src/pages')).forEach(filename => {
-        map[filename] = ['@babel/polyfill', path.join(__dirname, `../src/pages/${filename}/${filename}.js`)]
+    fs.readdirSync(resolve('src/pages')).forEach(filename => {
+        map[filename] = ['@babel/polyfill', conf.join(`src/pages/${filename}/${filename}.js`)]
     })
     return map
 }
 
 // 设置出口的HTML
-const html = fs.readdirSync(path.resolve(__dirname, '../src/pages')).map(pathName => new HtmlWebpackPlugin({
+const html = fs.readdirSync(resolve('src/pages')).map(pathName => new HtmlWebpackPlugin({
     title: `--${pathName.toUpperCase()}--`,
     template: 'index.html',
     filename: `${pathName}.html`,
@@ -33,10 +49,11 @@ const html = fs.readdirSync(path.resolve(__dirname, '../src/pages')).map(pathNam
         collapseWhitespace: false // 压缩选项
     }
 }))
+
 module.exports = {
     entry: entrys,
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: resolve('dist'),
         filename: 'static/js/[name]-[hash:8].js',
         chunkFilename: 'static/js/[name]-[hash:8].js'
     },
@@ -45,9 +62,9 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': path.resolve(__dirname, '../src'),
-            '@system': path.resolve(__dirname, '../src/pages/system'),
-            '&': path.resolve(__dirname, '../')
+            '@': resolve('src'),
+            '@system': resolve('src/pages/system'),
+            '&': resolve('')
         }
     },
     module: {
@@ -56,7 +73,7 @@ module.exports = {
                 loader: 'eslint-loader',
                 enforce: 'pre',
                 //指定检查的目录
-                include: [path.resolve(__dirname, '../src')],
+                include: [resolve('src')],
                 //eslint检查报告的格式规范
                 options: {
                     formatter: require('eslint-friendly-formatter')
@@ -64,13 +81,17 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
-                include: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../node_modules/iview')],
+                loader: 'happypack/loader?id=js',
+                include: [resolve('src')],
                 exclude: [/node_modules/]
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: {
+                    js: 'happypack/loader?id=vue',
+                    css: cssLoader
+                }
             },
             {
                 test: /\.scss$/,
@@ -78,9 +99,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loaders: [
-                    'style-loader', 'css-loader'
-                ]
+                loaders: ['style-loader', 'css-loader']
             },
             {
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
@@ -97,6 +116,17 @@ module.exports = {
     },
     plugins: [
         ...html,
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new HappyPack({
+            id: 'js',
+            loaders: ['babel-loader?cacheDirectory=true'],
+            threadPool: happyThreadPool
+        }),
+        creatHappypack('js',['babel-loader?cacheDirectory=true']),
+        creatHappypack('vue',['babel-loader?cacheDirectory=true']),
+        creatHappypack('css',['css-loader', 'vue-style-loader']),
+        new webpack.DefinePlugin({
+            MOCK: conf.MOCK
+        })
     ]
 }

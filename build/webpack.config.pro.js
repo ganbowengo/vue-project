@@ -70,7 +70,7 @@ module.exports = merge(baseConfig, {
         minimizer: [
             // 多线程压缩JS
             new ParallelUglifyPlugin({
-                // cacheDir: '.cache/', // 缓存压缩后的结果，下次遇到一样的输入时直接从缓存中获取压缩后的结果并返回
+                cacheDir: '.cache/', // 缓存压缩后的结果，下次遇到一样的输入时直接从缓存中获取压缩后的结果并返回
                 exclude: /[\\/]node_modules[\\/]/,
                 uglifyJS: {
                     output: {
