@@ -25,7 +25,7 @@ module.exports = {
         //关闭“禁用console”规则
         "no-console": "off",
         //缩进不规范警告，要求缩进为2个空格，默认值为4个空格
-        "indent": ["warn", 4, {
+        indent: ["warn", 4, {
             //设置为1时强制switch语句中case的缩进为2个空格
             "SwitchCase": 1
         }],

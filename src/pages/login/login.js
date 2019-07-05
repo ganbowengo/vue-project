@@ -20,7 +20,12 @@ Vue.component('Input', Input)
 Vue.component('Form', Form)
 Vue.component('FormItem', FormItem)
 
+
 export default new Vue({
     el: '#app',
     render: (h) => h(App)
 })
+console.log(new Vue({
+    el: '#app',
+    render: (h) => h(App)
+}))
