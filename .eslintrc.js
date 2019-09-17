@@ -32,12 +32,12 @@ module.exports = {
         //定义字符串不规范错误，要求字符串使用双引号
         quotes: ["error", "single"],
         // 设置vue将标签渲染为原生html标签时，标签是自闭合的，所以有end标签会报错 关闭
-        'vue/no-parsing-error': [2, {
-            "x-invalid-end-tag": false
-        }]
+        "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }]
     },
     globals: {
         "MOCK": false,
-        "__dirname": false
+        "__dirname": false,
+        "require" : true,
+        "module" : true,
     }
 }

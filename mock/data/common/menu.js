@@ -1,3 +1,4 @@
+/* global module */
 module.exports = {
     'success': true,
     'message': '请求成功',

@@ -14,7 +14,7 @@
             </div>
             <div v-else-if='item.type === "datepicker"' class="search-box box-select">
                 <label>{{item.label}}</label>
-                <DatePicker v-model="item.value" style='width:100%;'></DatePicker>
+                <DatePicker v-model="item.value" :type="item.dateType || ''" style='width:100%;'></DatePicker>
             </div>
             <div v-else-if='item.type === "button"' class="search-box box-button">
                 <Button :type='item.color' @click="handleClick(item.fn)">{{item.label}}</Button>
@@ -25,6 +25,7 @@
 
 <script>
 export default {
+    name: 'SearchCondition',
     props: {
         condition: {
             type : Array,

@@ -21,12 +21,11 @@
 
 <script>
 
-import SearchCondition from '../../serviceCommon/SearchCondition'
 import InvoiceTypeModal from './commonModal/InvoiceTypeModal'
 import pageMixin from '@system/mixins/systemPageMixin'
 import { mapState } from 'vuex'
 export default {
-    components: { SearchCondition, InvoiceTypeModal },
+    components: { InvoiceTypeModal },
     mixins: [pageMixin],
     data() {
         return {
