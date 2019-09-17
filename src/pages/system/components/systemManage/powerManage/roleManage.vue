@@ -21,11 +21,10 @@
 
 <script>
 
-import SearchCondition from '../../serviceCommon/SearchCondition'
 import roleModal from './commonModal/roleModal'
 import pageMixin from '@system/mixins/systemPageMixin'
 export default {
-    components: { SearchCondition, roleModal },
+    components: { roleModal },
     mixins: [pageMixin],
     data() {
         return {

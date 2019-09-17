@@ -12,6 +12,7 @@ import http from '@/assets/js/http'
 import globalTool from '@/assets/utils/global'
 import store from './vuex'
 import initCommonUi from '@system/common-ui'
+import SearchCondition from '@system/components/serviceCommon/SearchCondition'
 
 import {
     Button,
@@ -67,6 +68,7 @@ Vue.component('RadioGroup', RadioGroup)
 Vue.component('Radio', Radio)
 Vue.component('Tree', Tree)
 Vue.component('Dropdown', Dropdown)
+Vue.component('SearchCondition', SearchCondition)
 
 initCommonUi()
 export default new Vue({

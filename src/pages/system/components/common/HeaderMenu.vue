@@ -1,6 +1,7 @@
 <template>
     <div>
         <Header class="header">
+            <h1>发票管理系统</h1>
             <div class="logout">
                 <span @click="logout">退出</span>
                 <em>|</em>
@@ -34,12 +35,19 @@ export default {
 
 <style lang="scss" scoped>
     .header{
-        background: #0e3aaa url('~@/assets/img/headerbg.jpg') no-repeat 0 0;
+        // 图片引入方式 background: #0e3aaa url('~@/assets/img/headerbg.jpg') no-repeat 0 0;
+        background: #0e3aaa;
         width: 100%;
         background-size: auto 100%;
         height: 70px;
         line-height: 70px;
         font-size: 14px;
+        display: flex;
+        padding: 0 20px;
+        justify-content: space-between;
+        h1{
+            color:#fff;
+        }
     }
     .logout{
         color: #fff;
