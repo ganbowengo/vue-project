@@ -1,12 +1,20 @@
 <template>
     <div>
         <SearchCondition :condition='condition' @queryData='getQueryData'></SearchCondition>
+        <div id='echarts'></div>
     </div>
 </template>
 
 <script>
 
 import pageMixin from '@system/mixins/systemPageMixin'
+let echarts = require('echarts/lib/echarts')
+require('echarts/lib/chart/line')
+require('echarts/lib/chart/bar')
+require('echarts/lib/chart/radar')
+require('echarts/lib/component/tooltip')
+require('echarts/lib/component/title')
+require('echarts/lib/component/legend')
 export default {
     mixins: [pageMixin],
     data() {
@@ -21,7 +29,9 @@ export default {
                     type: 'datepicker',
                     label: '时间',
                     dateType: 'datetime',
-                    placeholder: '请输入'
+                    format: 'yyyy-MM-dd HH:mm:ss',
+                    placeholder: '请输入',
+                    fn: this.dateChange
                 },
                 {
                     index: 2,
@@ -30,7 +40,13 @@ export default {
                     type: 'select',
                     label: '业务类型',
                     placeholder: '请选择',
-                    options: []
+                    options: [
+                        {code: 'TaxDeviceController_saveBsp,TaxDeviceController_saveSkp', name: '盘发行情况'},
+                        {code: 'TaxDeviceController_getTaxDeviceInfo', name: '大厅抄报'},
+                        {code: 'HallHandworkCollect_ManualEntyr', name: '网上抄报'},
+                        {code: 'KafkaConsumerXml_parseKafkaXml', name: '发票上传'},
+                        {code: 'InvoiceRegisterController_addInvoiceSale', name: '发票发售'}
+                    ]
                 },
                 {
                     type: 'button',
@@ -43,17 +59,61 @@ export default {
         }
     },
     methods: {
+        dateChange(e){
+            this.searchInfo.startDate = e
+        },
         query(query) {
+            if(!query.startDate) return this.$Message.error('时间不能为空')
+            let endDate =  new Date(new Date(query.startDate).getTime() + 24 * 60 * 60 * 1000)
+            endDate = this.globalTool.setDate(endDate)
             query = query || this.searchInfo
-            console.log('query',query)
+            query.startDate = this.searchInfo.startDate
+            query.endDate = endDate
             this.http.post('/sys/log/statBizLog',{
                 params: query
             }).then(res => {
                 if(res.success){
-                    console.log('res',res)
+                    this.initEcharts(res.data[0])
                 }
             }).catch(error => {
                 throw error
+            })
+        },
+        initEcharts(data){
+            let myChart = echarts.init(document.getElementById('echarts'))
+            let resArr = [['success', '成功'], ['error', '失败']]
+            let option = {
+                data: [],
+                xAlies: []
+            }
+            var colorList = ['green', 'red']
+            resArr.forEach(function (list, index) {
+                if (data[list[0]]) {
+                    if (data[list[0]].value.length) {
+                        option.xAlies = data[list[0]].xAlies
+                        option.data = [{
+                            data: data[list[0]].value,
+                            type: 'line',
+                            lineStyle: {
+                                width: 1,
+                                color: `${colorList[index]}`
+                            },
+                            itemStyle: {
+                                color: `${colorList[index]}`
+                            }
+                        }]
+                        option.title = {
+                            text: '1234',
+                            subtext: list[1] + '次数统计'
+                        }
+                        console.log(myChart)
+                        // myChart.setData(option)
+                    } else {
+                        console.log('')
+                    }
+                } else {
+                    console.log('')
+                }
             })
         }
     }

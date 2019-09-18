@@ -13,6 +13,7 @@ const success = require('./data/common/success')
 const invoiceCodeSearch = require('./data/sys/invoiceCodeSearch')
 const queryRole = require('./data/sys/powerManager')
 const invoiceCodeManager = require('./data/sys/invoiceCodeManager')
+const log = require('./data/sys/log')
 
 
 // url 对应的数据
@@ -31,7 +32,9 @@ const urlReflectionData = {
 
     //发票代码管理
     '/sys/fpdm/searchFpdm': invoiceCodeManager,
-    '/sys/fpdm/addFpdm': success
+    '/sys/fpdm/addFpdm': success,
+
+    '/sys/log/statBizLog': log
 }
 
 const mockInit = function () {

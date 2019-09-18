@@ -33,6 +33,8 @@ axios.interceptors.request.use(config => {
     config.url = BASE_URL + config.url
     if (config.data && config.data.options) {
         config.options = config.data.options
+    }
+    if (config.data && config.data.params) {
         config.data = config.data.params
     }
     return config
