@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @Author: ganbowen
+ * @Date: 2020-01-04 11:18:36
+ * @LastEditors: ganbowen
+ * @LastEditTime: 2020-01-05 11:35:40
+ */
 /**
  *
  * author ganbowen
@@ -11,7 +18,7 @@ import '@/assets/styles/index.scss'
 import http from '@/assets/js/http'
 
 import { Button, Input, Form, FormItem, Message } from 'iview'
-import 'iview/dist/styles/iview.css'
+// import 'iview/dist/styles/iview.css'
 
 Vue.prototype.http = http
 Vue.prototype.$Message = Message

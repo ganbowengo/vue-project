@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion: 
+ * @Author: ganbowen
+ * @Date: 2020-01-04 11:18:36
+ * @LastEditors  : ganbowen
+ * @LastEditTime : 2020-01-05 11:37:23
+ -->
 <template>
     <div id="app">
         <Form class="login" :model="loginInfo" :label-width="80">

@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @Author: ganbowen
+ * @Date: 2020-01-04 11:18:36
+ * @LastEditors: ganbowen
+ * @LastEditTime: 2020-01-05 11:35:32
+ */
 /**
  *
  * author ganbowen
@@ -39,7 +46,7 @@ import {
     Tree,
     Dropdown
 } from 'iview'
-import 'iview/dist/styles/iview.css'
+// import 'iview/dist/styles/iview.css'
 import '@/assets/styles/index.scss'
 import '@/assets/styles/ivu-style-reset.scss'
 

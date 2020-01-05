@@ -10,6 +10,7 @@ const os = require('os')
 const fs = require('fs')
 const path = require('path')
 const conf = require('./conf')
+const cdn = require('./cdn')
 const webpack = require('webpack')
 const HappyPack = require('happypack') // 多线程打包
 const { VueLoaderPlugin } = require('vue-loader') // 处理.vue文件
@@ -21,8 +22,10 @@ const cssLoader = new MiniCssExtractPlugin({
         'happypack/loader?id=css'
     ]
 })
-
+const externalConfig = JSON.parse(JSON.stringify(cdn.externalConfig))  // 读取配置
+const externalModules = cdn.getExternalModules(externalConfig) // externalConfig 修改成cdn的路径 返回忽略的资源配置
 const resolve = conf.resolve
+
 // 生成happypack plugin
 const creatHappypack = (id, loaders) => new HappyPack({
     id,
@@ -47,7 +50,8 @@ const html = fs.readdirSync(resolve('src/pages')).map(pathName => new HtmlWebpac
     chunks: ['common', 'manifest', 'vendor', pathName],
     minify: {
         collapseWhitespace: false // 压缩选项
-    }
+    },
+    cdnConfig: externalConfig // cdn配置
 }))
 
 module.exports = {
@@ -67,6 +71,7 @@ module.exports = {
             '&': resolve('')
         }
     },
+    externals: externalModules, 
     module: {
         rules: [{
                 test: /\.(js|vue)$/,

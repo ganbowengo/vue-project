@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: build config
+ * @Author: ganbowen
+ * @Date: 2020-01-04 11:18:36
+ * @LastEditors  : ganbowen
+ * @LastEditTime : 2020-01-05 11:12:28
+ */
 /**
  *
  * author ganbowen
