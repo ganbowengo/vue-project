@@ -71,7 +71,7 @@ module.exports = {
             '&': resolve('')
         }
     },
-    externals: externalModules, 
+    externals: externalModules, // 排除cdn引入的文件
     module: {
         rules: [{
                 test: /\.(js|vue)$/,

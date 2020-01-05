@@ -1,17 +1,11 @@
 /*
- * @Descripttion: 
+ * @Descripttion: system 页面的主文件
  * @Author: ganbowen
  * @Date: 2020-01-04 11:18:36
- * @LastEditors: ganbowen
- * @LastEditTime: 2020-01-05 11:35:32
+ * @LastEditors  : ganbowen
+ * @LastEditTime : 2020-01-05 12:32:05
  */
-/**
- *
- * author ganbowen
- * description system 页面的主文件
- * created 2019/05/08 14:33:57
- *
- */
+
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'

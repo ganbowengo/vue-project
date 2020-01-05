@@ -1,16 +1,9 @@
 /*
- * @Descripttion: 
+ * @Descripttion: login 页面的主文件
  * @Author: ganbowen
  * @Date: 2020-01-04 11:18:36
- * @LastEditors: ganbowen
- * @LastEditTime: 2020-01-05 11:35:40
- */
-/**
- *
- * author ganbowen
- * description login 页面的主文件
- * created 2019/05/08 14:33:57
- *
+ * @LastEditors  : ganbowen
+ * @LastEditTime : 2020-01-05 11:51:35
  */
 import Vue from 'vue'
 import App from './App.vue'

@@ -3,14 +3,7 @@
  * @Author: ganbowen
  * @Date: 2020-01-04 11:18:36
  * @LastEditors  : ganbowen
- * @LastEditTime : 2020-01-05 11:12:28
- */
-/**
- *
- * author ganbowen
- * description 生产环境
- * created 2019/05/03 14:28:18
- *
+ * @LastEditTime : 2020-01-05 12:31:30
  */
 'use strict'
 

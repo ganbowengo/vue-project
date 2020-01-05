@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion: 
+ * @Author: ganbowen
+ * @Date: 2020-01-04 11:18:36
+ * @LastEditors  : ganbowen
+ * @LastEditTime : 2020-01-05 12:32:36
+ -->
 <template>
     <div id="app" class="layout">
         <Layout>
