@@ -1,10 +1,11 @@
-/**
- *
- * author ganbowen
- * description axios 封装文件
- * created 2019/05/4 14:33:09
- *
+/*
+ * @Descripttion: axios 封装文件
+ * @Author: ganbowen
+ * @Date: 2020-01-04 11:18:36
+ * @LastEditors: ganbowen
+ * @LastEditTime: 2020-08-05 17:57:40
  */
+
 import axios from 'axios'
 import Vue from 'vue'
 import { transDictionary } from '../utils/trans'
@@ -17,7 +18,7 @@ const STATUS_LIST = [401, 403, 500]
 const MESSAGE_LIST = ['没有访问权限!', 'token错误，请重新登录！', 'token为空，请重新登录！', 'token失效，请重新登录！', 'token验签错误，请重新登录！', 'token超时，请重新登录！']
 const NULL_TOKEN_URL = ['/sys/token', '/sys/login']
 const jumpLogin = () => {
-    window.location.href = 'login.html'
+    // window.location.href = 'login.html'
 }
 
 axios.interceptors.request.use(config => {

@@ -41,7 +41,6 @@ const entrys = () => {
     })
     return map
 }
-
 // 设置出口的HTML
 const html = fs.readdirSync(resolve('src/pages')).map(pathName => new HtmlWebpackPlugin({
     title: `--${pathName.toUpperCase()}--`,
@@ -74,49 +73,49 @@ module.exports = {
     externals: externalModules, // 排除cdn引入的文件
     module: {
         rules: [{
-                test: /\.(js|vue)$/,
-                loader: 'eslint-loader',
-                enforce: 'pre',
-                //指定检查的目录
-                include: [resolve('src')],
-                //eslint检查报告的格式规范
+            test: /\.(js|vue)$/,
+            loader: 'eslint-loader',
+            enforce: 'pre',
+            //指定检查的目录
+            include: [resolve('src')],
+            //eslint检查报告的格式规范
+            options: {
+                formatter: require('eslint-friendly-formatter')
+            }
+        },
+        {
+            test: /\.js$/,
+            loader: 'happypack/loader?id=js',
+            include: [resolve('src')],
+            exclude: [/node_modules/]
+        },
+        {
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: {
+                js: 'happypack/loader?id=vue',
+                css: cssLoader
+            }
+        },
+        {
+            test: /\.scss$/,
+            exclude: [/node_modules/]
+        },
+        {
+            test: /\.css$/,
+            loaders: ['style-loader', 'css-loader']
+        },
+        {
+            test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+            use: {
+                loader: 'url-loader',
                 options: {
-                    formatter: require('eslint-friendly-formatter')
-                }
-            },
-            {
-                test: /\.js$/,
-                loader: 'happypack/loader?id=js',
-                include: [resolve('src')],
-                exclude: [/node_modules/]
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    js: 'happypack/loader?id=vue',
-                    css: cssLoader
-                }
-            },
-            {
-                test: /\.scss$/,
-                exclude: [/node_modules/]
-            },
-            {
-                test: /\.css$/,
-                loaders: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                use: {
-                    loader: 'url-loader',
-                    options: {
-                        name: '[name]-[hash:5].min.[ext]',
-                        limit: 5000,
-                        outputPath: 'static/css/fonts'
-                    }
+                    name: '[name]-[hash:5].min.[ext]',
+                    limit: 5000,
+                    outputPath: 'static/css/fonts'
                 }
             }
+        }
         ]
     },
     plugins: [
@@ -127,9 +126,9 @@ module.exports = {
             loaders: ['babel-loader?cacheDirectory=true'],
             threadPool: happyThreadPool
         }),
-        creatHappypack('js',['babel-loader?cacheDirectory=true']),
-        creatHappypack('vue',['babel-loader?cacheDirectory=true']),
-        creatHappypack('css',['css-loader', 'vue-style-loader']),
+        creatHappypack('js', ['babel-loader?cacheDirectory=true']),
+        creatHappypack('vue', ['babel-loader?cacheDirectory=true']),
+        creatHappypack('css', ['css-loader', 'vue-style-loader']),
         new webpack.DefinePlugin({
             MOCK: conf.MOCK
         })

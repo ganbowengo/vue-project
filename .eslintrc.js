@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @Author: ganbowen
+ * @Date: 2020-01-04 11:18:36
+ * @LastEditors: ganbowen
+ * @LastEditTime: 2020-03-25 17:19:45
+ */
 module.exports = {
     //一旦配置了root，ESlint停止在父级目录中查找配置文件
     root: true,
@@ -30,7 +37,7 @@ module.exports = {
             "SwitchCase": 1
         }],
         //定义字符串不规范错误，要求字符串使用双引号
-        quotes: ["error", "single"],
+        // quotes: ["error", "single"],
         // 设置vue将标签渲染为原生html标签时，标签是自闭合的，所以有end标签会报错 关闭
         "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }]
     },
